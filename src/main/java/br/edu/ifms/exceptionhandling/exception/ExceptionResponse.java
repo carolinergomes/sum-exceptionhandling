@@ -2,15 +2,19 @@ package br.edu.ifms.exceptionhandling.exception;
 
 import java.util.Date;
 
+import org.springframework.http.HttpStatus;
+
 public class ExceptionResponse {
     private Date timestamp;
     private String message;
     private String details;
+    private HttpStatus status;
 
-    public ExceptionResponse(Date timestamp, String message, String details) {
+    public ExceptionResponse(Date timestamp, String message, String details, HttpStatus status) {
         this.timestamp = timestamp;
         this.message = message;
         this.details = details;
+        this.status = status;
     }
 
     public Date getTimestamp() {
@@ -35,5 +39,13 @@ public class ExceptionResponse {
 
     public void setDetails(String details) {
         this.details = details;
+    }
+
+    public HttpStatus getStatus() {
+        return status;
+    }
+
+    public void setStatus(HttpStatus status) {
+        this.status = status;
     }
 }

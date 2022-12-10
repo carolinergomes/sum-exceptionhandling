@@ -9,25 +9,22 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping(value = "/calculator")
+@RequestMapping(value = "/sum")
 
 public class somaController {
     @GetMapping("/{num1}/{num2}")
-    public ResponseEntity<Integer> add(@PathVariable("numero1") String numero1, @PathVariable("numero2") String numero2) {
+    public ResponseEntity<Integer> sum(@PathVariable String num1, @PathVariable String num2) {
 
-        int num1 = 0;
-        int num2 = 0;
 
-         try{
+    try{
 
-            num1 = Integer.parseInt(numero1);
-            num2 = Integer.parseInt(numero2);
+      Integer numero1 = Integer.parseInt(num1);
+      Integer numero2 = Integer.parseInt(num2);
+      return ResponseEntity.ok(numero1 + numero2);
 
-         }catch(NumberFormatException e){
+    }catch(ArithmeticException e){
 
-            throw new ArithmeticException("Letras não são permitidas!");
-         }
-         return ResponseEntity.ok(num1 + num2);
+       throw new ArithmeticException("Letras não são permitidas!");
     }
 }
-
+}
